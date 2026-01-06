@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Markdown dans HTML (sans serveur)</title>
+
+  <!-- 1. Inclure la librairie JS -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <style>
+    body {font-family: Arial, sans-serif; padding: 2rem;}
+    pre {background:#f4f4f4; padding:1rem; overflow:auto;}
+    /* Optionnel : un peu de stylage pour le rendu Markdown */
+    h1,h2,h3 {color:#333;}
+    code {background:#e8e8e8; padding:0.2rem;}
+  </style>
+</head>
+<body>
+
+
+<!-- 2. Contenu Markdown (dans un textarea ou script) -->
+<textarea id="markdown-source" rows="12" style="display:none">
+
+# Mon texte en Markdown
+zf260106.1209
+
+## Un sous titre
+### Un sous sous titre
+
+Voici un paragraphe.
+
+- Point 1
+- Point 2
+  - Sous‑point
+
+Avec une liste à puces:
+
+* toto
+* tutu
+* titi
+
+Avec une liste numérique:
+
+1. toto
+1. tutu
+1. titi
+
+Et avec une url: https://github.com/zuzu59/md-html-viewer
+
+Et finalement du code:
+
+```
+cat toto.txt |grep tutu
+```
+
+
+On peut voir que c'est *très* **simple** d'écrire une page statique HTML !
+
+
+
+
+
+
+
+
+</textarea>
+
+<!-- 3. Zone où le HTML rendu sera injecté -->
+<div id="markdown-output"></div>
+
+<script>
+// 4. Quand la page est prête, lis le Markdown, le convertir et l’insérer
+document.addEventListener('DOMContentLoaded', () => {
+const source = document.getElementById('markdown-source').value;
+const html = marked.parse(source); // or marked(source) ; parse() is the async version
+document.getElementById('markdown-output').innerHTML = html;
+});
+</script>
+</body>
+</html>
