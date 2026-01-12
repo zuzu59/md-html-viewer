@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Markdown dans HTML (sans serveur)</title>
+
+  <!-- 1. Inclure la librairie JS -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <style>
+    body {font-family: Arial, sans-serif; padding: 2rem;}
+    pre {background:#f4f4f4; padding:1rem; overflow:auto;}
+    /* Optionnel : un peu de stylage pour le rendu Markdown */
+    h1,h2,h3 {color:#333;}
+    h1 {text-align: center;}
+    code {background:#e8e8e8; padding:0.2rem;}
+  </style>
+</head>
+<body>
+
+
+<!-- 2. Contenu Markdown (dans un textarea ou script) -->
+<textarea id="markdown-source" rows="12" style="display:none">
+
+# Petite aide pour visualiser l'arbre de la Bourgeoisie de St-Luc
+zf260112.2301
+
+Ce site WEB permet de visualiser très facilement tout l'arbre de la Bourgeoisie, soit environ ***4'300 individus***, ce qui fait vraiment beaucoup !<br>
+(attention c'est la version à Samuel du 31 décembre de 2025, il y a encore pleins d'erreurs et de manques)
+
+## Utilisation
+Juste quelques petits trucs pour débuter avec l'interface
+
+### Sur l'ordinateur
+
+* Pour débuter, chercher son nom dans la fenêtre de ***recherche***
+* choisir ***Afficher / Graphique en sablier***, cela va limiter l'affichage, car il y a beaucoup d'individus
+* cliquer sur son grand-père ou sa grand-mère
+* se balader dans l'arbre et quand on a bien vu ***son arbre famillial***, on peut choisir ***Afficher / Tous les parents***
+* dezoomer fortement, en cliquant en haut à gauche, pour voir tout l'arbre de ses parents
+* se ***retrouver*** tout en bas de l'arbre
+* et après se ***balader*** dans l'arbre *de branches en branches*
+
+Quand on a compris, c'est très simple !
+
+Après on peut revenir au ***Graphique en sablier*** pour simplifier l'arbre, rechercher une ***connaissance***, se balader un peu puis afficher ***tous les parents***.
+
+Y'a quand même 4'300 individu et on n'a pas tous les mêmes parents, donc on ne ***voit*** jamais l'arbre en entier !
+
+
+### Sur le smartphone (subtilité)
+
+Comme l'écran du *smartphone* est beaucoup plus petit que l'écran de l'*ordinateur*, on n'a donc pas la même interface et il faut un peu *ruser* pour pouvoir 
+quand même visualiser l'arbre de la Bourgeoisie.<br>
+C'est quand même bien pratique de pouvoir *voir* son *arbre* au bistrot !
+
+Quand le *smartphone* est en mode *vertical*, la ***fenêtre de recherche*** n'est pas visible.
+
+Pour la rendre ***visible***, il suffit simplement de ***tourner*** le smartphone en mode *horizontal*, faire la recherche, ***remettre*** le smartphone en mode *vertical*.
+
+Après, c'est exactement la même chose que sur l'ordinateur.
+
+
+## Contact
+Si vous découvriez des erreurs ou des manques, merci de contacter Samuel sur mon mail: xxx@yyy.zzz
+
+
+
+
+
+</textarea>
+
+<!-- 3. Zone où le HTML rendu sera injecté -->
+<div id="markdown-output"></div>
+
+<script>
+// 4. Quand la page est prête, lis le Markdown, le convertir et l’insérer
+document.addEventListener('DOMContentLoaded', () => {
+const source = document.getElementById('markdown-source').value;
+const html = marked.parse(source); // or marked(source) ; parse() is the async version
+document.getElementById('markdown-output').innerHTML = html;
+});
+</script>
+</body>
+</html>
